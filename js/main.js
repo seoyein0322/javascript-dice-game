@@ -4,6 +4,7 @@ const playBtn = document.querySelector(".play-btn");
 const rightDice = document.querySelector(".right-dice");
 const leftDice = document.querySelector(".left-dice");
 
+// test
 let totalMoney = 1000;
 let isFalseSameDice = 0;
 
