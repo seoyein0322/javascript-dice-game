@@ -4,9 +4,12 @@ const playBtn = document.querySelector(".play-btn");
 const rightDice = document.querySelector(".right-dice");
 const leftDice = document.querySelector(".left-dice");
 
-// test
+// 2. 게임을 시작할 때 시드머니 1000으로 시작
 let totalMoney = 1000;
 let isFalseSameDice = 0;
+
+let max;
+let min;
 
 playBtn.addEventListener("click", isTrueMoney);
 window.addEventListener("load", enterEvent);
@@ -48,6 +51,7 @@ function startDiceGame() {
     document.querySelector(".bet-money").value = "";
 }
 
+// 3. 가지고 있는 시드머니 내에서 판돈을 걸고, 시드머니가 다 떨어질때까지 게임 가능
 function countMoney(num1, num2) {
     let betMoney = document.querySelector(".bet-money").value;
 
@@ -56,17 +60,17 @@ function countMoney(num1, num2) {
     seedMoney.innerHTML = totalMoney;
     console.log("현재 시드머니:", totalMoney);
 
-    //두 주사위의 숫자가 같으면 다음 조건에 따라 머니 지급
     if (num1 === num2) sameDices(betMoney, num1);
     else isFalseSameDice = isFalseSameDice + 15;
 
-    //시드머니가 다 떨어지면 다시 처음부터 시작 가능
+    //4. 시드머니가 다 떨어지면 다시 처음부터 시작 가능
     if (totalMoney < 0) {
         totalMoney = 1000;
         seedMoney.innerHTML = totalMoney;
     }
 }
 
+// 5. 두 주사위의 숫자가 같으면 다음 조건에 따라 머니 지급
 function sameDices(betMoney, num1) {
     betMoney = betMoney * num1;
     totalMoney = totalMoney + betMoney;
@@ -91,7 +95,7 @@ function changeDices(num1, num2) {
     leftDice.insertAdjacentHTML("beforeend", diceNum2);
 }
 
-//플레이 횟수가 많아질 수록 더 높은 숫자의 동일한 숫자가 나올 확률을 높임
+//6. 두 주사위의 숫자가 같지 않은 플레이 횟수가 많아질 수록 더 높은 숫자의 동일한 숫자가 나올 확률을 높임
 function increateSameDicesPercent() {
     if (isFalseSameDice <= 15) {
         countRandom(6, 1);
