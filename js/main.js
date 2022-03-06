@@ -8,8 +8,8 @@ const leftDice = document.querySelector(".left-dice");
 let totalMoney = 1000;
 let isFalseSameDice = 0;
 
-let max;
-let min;
+let num1;
+let num2;
 
 playBtn.addEventListener("click", isTrueMoney);
 window.addEventListener("load", enterEvent);
@@ -39,13 +39,9 @@ function startDiceGame() {
     rightDice.innerHTML = "";
     leftDice.innerHTML = "";
 
-    let num1 = Math.floor(Math.random() * 6 + 1);
-    let num2 = Math.floor(Math.random() * 6 + 1);
-
+    increaseSameDicesPercent();
     console.log("주사위 값: ", num1, num2);
     console.log("동일한 숫자가 아닌 경우: ", isFalseSameDice);
-
-    increateSameDicesPercent();
     changeDices(num1, num2);
     countMoney(num1, num2);
     document.querySelector(".bet-money").value = "";
@@ -96,22 +92,27 @@ function changeDices(num1, num2) {
 }
 
 //6. 두 주사위의 숫자가 같지 않은 플레이 횟수가 많아질 수록 더 높은 숫자의 동일한 숫자가 나올 확률을 높임
-function increateSameDicesPercent() {
+function increaseSameDicesPercent() {
     if (isFalseSameDice <= 15) {
-        countRandom(6, 1);
+        return getRandom(7, 1);
     } else if (isFalseSameDice <= 30) {
-        countRandom(6, 2);
+        return getRandom(7, 2);
     } else if (isFalseSameDice <= 45) {
-        countRandom(6, 3);
+        return getRandom(7, 3);
     } else if (isFalseSameDice <= 60) {
-        countRandom(6, 4);
+        return getRandom(7, 4);
     } else if (isFalseSameDice <= 75) {
-        countRandom(6, 5);
+        return getRandom(7, 5);
     } else if (isFalseSameDice <= 90) {
-        countRandom(6, 6);
+        return getRandom(7, 6);
+    } else {
+        return getRandom(7, 1);
     }
 }
 
-function countRandom(max, min) {
-    Math.floor(Math.random() * max) + min;
+function getRandom(max, min) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    num1 = Math.floor(Math.random() * (max - min)) + min;
+    num2 = Math.floor(Math.random() * (max - min)) + min;
 }
