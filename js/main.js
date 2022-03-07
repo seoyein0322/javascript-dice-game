@@ -39,7 +39,7 @@ function startDiceGame() {
     leftDice.innerHTML = "";
 
     increaseSameDicesPercent();
-    createDicesDot();
+    createDicesNumber();
     countMoney();
     document.querySelector(".bet-money").value = "";
 }
@@ -95,7 +95,7 @@ function getRandom(max, min) {
     num2 = Math.floor(Math.random() * (max - min)) + min;
 }
 
-function createDicesDot() {
+function createDicesNumber() {
     let diceNum1 = "";
     let diceNum2 = "";
 
